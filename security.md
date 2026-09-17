@@ -51,7 +51,7 @@ it. `secret-scan.yml` scans clean.
 
 ## Repo visibility
 
-Private by default; public only when the game earns it. Never let "I want a
-quick Pages preview link" quietly make a rough prototype public — Pages on
-free accounts requires public, so treat going public and enabling Pages as
-one deliberate decision.
+Game repos stay public (free-account Pages requires it). The guardrail isn't
+the visibility setting — it's being extra stringent with what gets shared:
+the secret triple-check runs on every upload, and rough or sensitive content
+never goes up just because "it's already public."
