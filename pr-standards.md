@@ -28,3 +28,15 @@ How it was tested: CI checks, playtest results, screenshots/video.
 - **Video** of key gameplay moments, captured automatically during the playtest
   (ffmpeg x11grab of the virtual display, uploaded as a CI artifact).
 - For UI-heavy changes (menus, HUD), grab dedicated captures beyond the playtest shots.
+
+## Website screenshots
+
+PRs that change the GitHub Pages site (layout, copy, styling around the game)
+must include rendered screenshots of the changed pages:
+
+- **Desktop** (1280x800) and **mobile** (390x844) viewports.
+- Captured in CI from the built site: after the web export, serve `exports/web`
+  locally, screenshot with headless Chromium, upload as the
+  `website-screenshots` artifact, and link it in Verification.
+- The game canvas itself is covered by the playtest screenshots; website shots
+  are for the page chrome — titles, copy, layout, responsive behavior.
