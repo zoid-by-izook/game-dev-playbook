@@ -36,9 +36,18 @@ Until a game is ready for outside eyes:
   drive-by PR can never land code; it can only sit unmerged.
 - Honest limitation: on a **public** repo GitHub does not let you prevent
   forks from *opening* PRs. If zero inbound PRs is required, the repo must
-  go private (which also disables Pages on free accounts). Optional middle
-  ground: an auto-close bot workflow that immediately closes PRs from
-  non-collaborators with a "not accepting contributions yet" note.
+  go private (which also disables Pages on free accounts). Middle ground
+  (adopted): an auto-close bot workflow (`.github/workflows/autoclose.yml`)
+  that immediately closes PRs from anyone other than the owner/Isaac with a
+  "not accepting contributions yet" note. It uses `pull_request_target` so it
+  runs from the base branch even for fork PRs, and checks out no code, so
+  untrusted PR contents can never execute. Note: it only takes effect after
+  the workflow itself is merged to `main`.
+
+## Naming lesson (2026-09-16)
+
+Don't name a workflow `secrets.yml` — the scanner's filename denylist flags
+it. `secret-scan.yml` scans clean.
 
 ## Repo visibility
 
