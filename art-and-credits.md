@@ -50,3 +50,14 @@ Don't research every asset category upfront. Work one item at a time:
   edge cases. Credit them anyway; it's the right thing to do.
 - Record the license per asset in all three credit surfaces.
 - Never commit an asset whose license you haven't read.
+
+## Credit entry format (standing pattern, 2026-09-17)
+
+Every credit entry on the **website** and in the **README** links both the
+asset and the artist — the asset name links to where the asset lives
+(download page, store page, or portfolio piece), and the artist name links to
+their site. Example:
+
+> [**Ultimate Platformer Pack**](https://quaternius.itch.io/ultimate-platformer-pack)
+> (character, coins, platforms, flag) by [Quaternius](https://quaternius.com)
+> — CC0 1.0 Universal
