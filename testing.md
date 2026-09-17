@@ -35,21 +35,35 @@ a failing playtest blocks the merge button, full stop.
 
 ## CI hardening (learned 2026-09-16)
 
-The first CI run timed out at the 15-minute job limit with zero output — the
-playtest step redirected everything to a file, so the "hang" was invisible.
+The first CI runs "hung" until the job timeout with zero output — and the real
+cause was *not* slowness. On a fresh checkout there is no
+`.godot/global_script_class_cache.cfg`, so every script referencing a global
+`class_name` (`PlatformerPlayer`, `Coin`, `Goal`) failed to parse, the test
+scene's script never loaded, and Godot idled silently until the timeout. The
+timeout *looked* like a slow renderer; the streamed logs proved otherwise.
+Lesson: when a CI run stalls, read the actual errors before theorizing about
+speed — the class cache is suspect #1 for Godot projects.
+
 Fixes, now standard:
 
+- **Import before you run**: `godot --headless --path . --import` as its own
+  CI step. It builds the script class cache (and imports resources) on a fresh
+  checkout. Without it, headless direct-runs of the game break on parse
+  errors — the editor and the export pipeline do this implicitly, so you only
+  notice in CI.
 - **Stream logs live**: pipe the game output through `tee` so the step shows
-  progress in real time; keep the file for the tail/grep checks.
+  progress in real time; keep the file for the tail/grep checks. Redirecting
+  everything to a file is how the original hang became invisible.
 - **Print stage markers** in the test (`SMOKE: stage ...`) so silence is never
-  ambiguous — you can see exactly where a slow run is.
+  ambiguous — you can see exactly where a run is.
 - **Shrink the viewport**: `--resolution 640x360` cuts software-rendered pixels
   4x. llvmpipe on a 2-vCPU runner is slow; screenshots stay legible.
 - **Fail loudly on hangs**: `timeout -k 60 25m` on the step plus a generous
   `timeout-minutes` on the job. A timeout is a clear failure, not a mystery.
 - **Fixed frame counts can't hang the test itself** — every wait is a bounded
-  number of physics frames. If a run stalls, suspect rendering/import speed,
-  not the wait logic. (Unbounded `while` waits are still forbidden.)
+  number of physics frames. If a run stalls, suspect the class cache or
+  rendering/import speed, not the wait logic. (Unbounded `while` waits are
+  still forbidden.)
 
 ## Video capture
 
