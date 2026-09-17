@@ -11,6 +11,7 @@ Applies to every game project unless he overrides for a specific one.
 - `releases.md` — changelog, versioning, GitHub Releases
 - `godot-setup.md` — Godot project conventions (versions, exports, CI)
 - `security.md` — secret triple-check, repo lockdown, visibility rules
+- `art-and-credits.md` — third-party art/audio/font workflow: credits scaffolding first, credit-as-you-go, per-item research, art PRs need Isaac's merge approval
 
 ## Core principles
 
