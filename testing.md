@@ -33,6 +33,24 @@ a failing playtest blocks the merge button, full stop.
 - Doesn't catch: feel. Floaty jumps, unfair platforms, bad camera — that's
   Isaac's department as feel QA. He playtests every meaningful change.
 
+## CI hardening (learned 2026-09-16)
+
+The first CI run timed out at the 15-minute job limit with zero output — the
+playtest step redirected everything to a file, so the "hang" was invisible.
+Fixes, now standard:
+
+- **Stream logs live**: pipe the game output through `tee` so the step shows
+  progress in real time; keep the file for the tail/grep checks.
+- **Print stage markers** in the test (`SMOKE: stage ...`) so silence is never
+  ambiguous — you can see exactly where a slow run is.
+- **Shrink the viewport**: `--resolution 640x360` cuts software-rendered pixels
+  4x. llvmpipe on a 2-vCPU runner is slow; screenshots stay legible.
+- **Fail loudly on hangs**: `timeout -k 60 25m` on the step plus a generous
+  `timeout-minutes` on the job. A timeout is a clear failure, not a mystery.
+- **Fixed frame counts can't hang the test itself** — every wait is a bounded
+  number of physics frames. If a run stalls, suspect rendering/import speed,
+  not the wait logic. (Unbounded `while` waits are still forbidden.)
+
 ## Video capture
 
 The playtest records the virtual display (ffmpeg x11grab) during key moments
