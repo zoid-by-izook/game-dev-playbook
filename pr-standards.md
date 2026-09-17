@@ -24,7 +24,9 @@ How it was tested: CI checks, playtest results, screenshots/video.
 ## Visual evidence (habit)
 
 - Every PR links gameplay **screenshots** in Verification (uploaded as CI artifacts
-  from the playtest — never committed to the repo).
+  from the playtest — never committed to the repo). "Uploaded" isn't done until
+  it's linked: write the PR body after CI goes green and link the run's artifact
+  so the reviewer can actually see the images.
 - **Video** of key gameplay moments, captured automatically during the playtest
   (ffmpeg x11grab of the virtual display, uploaded as a CI artifact).
 - For UI-heavy changes (menus, HUD), grab dedicated captures beyond the playtest shots.
