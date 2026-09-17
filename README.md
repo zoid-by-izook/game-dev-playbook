@@ -10,6 +10,7 @@ Applies to every game project unless he overrides for a specific one.
 - `testing.md` — scripted playtests as a required merge gate, screenshots, video
 - `releases.md` — changelog, versioning, GitHub Releases
 - `godot-setup.md` — Godot project conventions (versions, exports, CI)
+- `security.md` — secret triple-check, repo lockdown, visibility rules
 
 ## Core principles
 
