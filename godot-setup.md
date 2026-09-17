@@ -32,13 +32,11 @@
   never Isaac's personal `Izook` account (his is a carefully curated list).
 - Invite `Izook` as a collaborator so he can access from his account
   (he must accept the invite).
-## Repo visibility (standing rule, 2026-09-16)
+## Repo visibility (standing rule, 2026-09-16, revised 2026-09-17)
 
-- **Private by default.** New game repos start private and stay private until
-  the game hits a quality level worth showing publicly.
-- Only make a repo public deliberately, as its own decision — never as a
-  side effect of wanting Pages or sharing a link.
-- Note: GitHub Pages on free accounts requires a public repo, so going public
-  and enabling Pages are effectively one decision. Don't let "I want a quick
-  preview link" quietly make a rough prototype public — use artifacts or
-  private sharing until it's ready.
+- **Public is fine, but stringent.** GitHub Pages on free accounts requires a
+  public repo, so game repos stay public. The guardrail isn't the visibility
+  setting — it's discipline about what gets shared: every upload gets the
+  literal secret triple-check, and nothing half-baked or sensitive goes up.
+- Going public is still a deliberate decision per repo — but for game repos
+  with Pages, the default is public-with-discipline, not private.
